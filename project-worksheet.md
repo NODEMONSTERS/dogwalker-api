@@ -13,7 +13,7 @@ This app will allow dog owners and people with free time looking for a job toget
 
 ## Wireframes
 
-- [Wireframe]()
+- [Wireframe]('./dog_walker_wireframe.jpg)
 
 ## MVP/Post MVP
 #### MVP
