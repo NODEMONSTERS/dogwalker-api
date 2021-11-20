@@ -17,6 +17,10 @@ app.get('/', (req, res) => {
 	res.send('Home page');
 });
 
+const dogController = require('./controllers/dogController');
+app.use('/dog', dogController);
+
+
 app.listen(PORT, () => {
 	console.log('listening...');
 });
