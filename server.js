@@ -7,9 +7,7 @@ const app = express();
 PORT = process.env.PORT;
 
 app.use(cors());
-
 app.use(express.urlencoded({ extended: false }));
-
 app.use(express.json());
 app.use(morgan('combined'));
 
@@ -20,6 +18,8 @@ app.get('/', (req, res) => {
 const dogController = require('./controllers/dogController');
 app.use('/dog', dogController);
 
+const walkerController = require('.controllers/walkerController');
+app.use('/walker', walkerController);
 
 app.listen(PORT, () => {
 	console.log('listening...');
