@@ -4,6 +4,7 @@ const dogSchema = require('./DogModel')
 const ownerSchema = new mongoose.Schema({
 	name : String,
     city: String,
+    email: String,
     dogs: [dogSchema]
 });
 
