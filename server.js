@@ -20,6 +20,8 @@ app.get('/', (req, res) => {
 const dogController = require('./controllers/dogController');
 app.use('/dog', dogController);
 
+const ownerController = require('./controllers/ownerController');
+app.use('/owner', ownerController);
 
 app.listen(PORT, () => {
 	console.log('listening...');
