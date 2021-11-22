@@ -24,5 +24,5 @@ const ownerController = require('./controllers/ownerController');
 app.use('/owner', ownerController);
 
 app.listen(PORT, () => {
-	console.log('listening...');
+	console.log('server.js is listening...');
 });
