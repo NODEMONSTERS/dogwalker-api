@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 //update
 
 router.put('/:id', async (req, res) => {
-	const updatedOwner = Owner.findByIdAndUpdate(req.params.id, req.body, {
+	const updatedOwner = await Owner.findByIdAndUpdate(req.params.id, req.body, {
 		new: true,
 	});
 	res.status(200).json({ status: 200, data: updatedOwner });
@@ -24,7 +24,7 @@ router.put('/:id', async (req, res) => {
 
 //delete
 router.delete('/:id', async (req, res) => {
-	const deleteOwner = Owner.findByIdAndDelete(req.params.id);
+	const deleteOwner = await Owner.findByIdAndDelete(req.params.id);
 	const owners = Owner.find();
 	res.status(204).json({ owners: owners });
 });
