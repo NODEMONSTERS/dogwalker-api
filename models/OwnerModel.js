@@ -5,7 +5,7 @@ const ownerSchema = new mongoose.Schema({
 	name : String,
     city: String,
     email: String,
-    dogs: [dogSchema]
+    dogs: [{ ref: 'Dog', type: mongoose.Schema.Types.ObjectId }]
 });
 
 module.exports = mongoose.model('DogOwner', ownerSchema);
