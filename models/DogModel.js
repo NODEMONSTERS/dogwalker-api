@@ -9,4 +9,4 @@ const dogSchema = new mongoose.Schema({
 	walkLengths: String,
 });
 
-module.exports = mongoose.model('Dog', dogSchema);
+module.exports = dogSchema;

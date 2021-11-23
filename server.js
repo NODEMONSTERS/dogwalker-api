@@ -21,7 +21,7 @@ app.use('/dog', dogController);
 const ownerController = require('./controllers/ownerController');
 app.use('/owner', ownerController);
 
-const walkerController = require('./controllers/walkerController');
+const walkerController = require('.controllers/walkerController');
 app.use('/walker', walkerController);
 
 app.listen(PORT, () => {
