@@ -4,8 +4,6 @@ const morgan = require('morgan');
 const cors = require('cors');
 const app = express();
 
-PORT = process.env.PORT;
-
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -24,6 +22,9 @@ app.use('/owner', ownerController);
 const walkerController = require('.controllers/walkerController');
 app.use('/walker', walkerController);
 
-app.listen(PORT, () => {
-	console.log('server.js is listening...');
+
+app.set('port', process.env.PORT || 8080);
+
+app.listen(app.get('port'), () => {
+	console.log(`✅ PORT: ${app.get('port')} 🌟`);
 });
