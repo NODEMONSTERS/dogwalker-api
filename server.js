@@ -53,7 +53,8 @@ app.use('/walker', walkerController);
 const ownerAuthenticationController = require('./controllers/ownerAuthenticationController')
 app.use('/ownerAccount', ownerAuthenticationController)
 
+app.set('port', process.env.PORT || 8080);
 
-app.listen(PORT, () => {
-	console.log(`server.js is listening... on port ${PORT}`);
+app.listen(app.get('port'), () => {
+	console.log(`✅ PORT: ${app.get('port')} 🌟`);
 });
