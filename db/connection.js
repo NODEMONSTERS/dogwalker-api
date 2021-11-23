@@ -1,10 +1,11 @@
 // CONNECT TO MONGO DB IN YOUR LOCAL DATABASE
 const mongoose = require('mongoose');
 mongoose.connect(
-	'mongodb://localhost/dogApp',
+	'mongodb+srv://lyshia:mongomongo@cluster0.i7xdk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
 	{ useNewUrlParser: true },
+	{ useUnifiedTopology: true },
 	() => {
-		console.log('MongoDB Connected as Local Database');
+		console.log('MongoDB Connected');
 	}
 );
 
