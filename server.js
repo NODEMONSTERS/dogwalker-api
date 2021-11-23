@@ -12,11 +12,13 @@ const session = require('express-session');
 const app = express();
 
 
+
 PORT = process.env.PORT;
 
 app.use(cors({
 		credentials: true
 }));
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(morgan('combined'));
@@ -44,11 +46,13 @@ app.use('/dog', dogController);
 const ownerController = require('./controllers/ownerController');
 app.use('/owner', ownerController);
 
+
 const walkerController = require('./controllers/walkerController');
 app.use('/walker', walkerController);
 
 const ownerAuthenticationController = require('./controllers/ownerAuthenticationController')
 app.use('/ownerAccount', ownerAuthenticationController)
+
 
 app.listen(PORT, () => {
 	console.log(`server.js is listening... on port ${PORT}`);
