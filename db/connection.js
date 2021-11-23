@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 
-mongoose.connect(mongoURI, { useNewUrlParser: true }, () => {
+mongoose.connect(mongoURI, { useNewUrlParser: true }, { useUnifiedTopology: true }, () => {
 	console.log('MongoDB Connected as Local Database');
 });
 
