@@ -39,7 +39,7 @@ router.post('/register', (req, res) => {
 		}
 	});
 });
-router.get('/user', (req, res) => {
+router.get('/user', async (req, res) => {
 	const owners = await User.find({});
 	res.status(200).json({ status: 200, owners: owners });
 	res.send(req.user); 
