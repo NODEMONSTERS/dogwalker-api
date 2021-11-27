@@ -14,4 +14,4 @@ const ownerSchema = new mongoose.Schema({
 	dogs: [{ type: mongoose.Schema.ObjectId, ref: 'Dog' }],
 });
 
-module.exports = mongoose.model('DogOwner', ownerSchema);
+module.exports = mongoose.model('Owner', ownerSchema);
