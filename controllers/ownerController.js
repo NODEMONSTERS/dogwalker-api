@@ -65,10 +65,10 @@ router.post('/register', async (req, res) => {
 	}
 
 	// salt the password to add extra security. if something goes wrong, send error
-	// const salt = await bcrypt.genSalt(10);
-	// if (!salt) {
-	// 	return res.status(400).json({ msg: 'Something got salty' });
-	// }
+	const salt = await bcrypt.genSalt(10);
+	if (!salt) {
+		return res.status(400).json({ msg: 'Something got salty' });
+	}
 
 	// hash the password as well, so now sending the password out into the open world.
 	//if something goes wrong, send and error

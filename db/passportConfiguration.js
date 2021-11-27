@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const localStrategy = require('passport-local').Strategy;
 
 module.exports = function (passport) {
+
 	passport.use('local-owner',
 		new localStrategy((email, password, done) => {
 
@@ -18,9 +19,7 @@ module.exports = function (passport) {
 							return done(null, false);
 						}
 					});
-				});
-	
-				
+				});			
 			}
 		)
 	);
@@ -43,7 +42,6 @@ module.exports = function (passport) {
 		})
 	);
 
-
 	passport.serializeUser((user, done) => {
 		if (typeof User.userTpe === 'owner') {
 			done(null, user.id);
@@ -51,6 +49,7 @@ module.exports = function (passport) {
 			done(null, user.id);
 		}
 	});
+	
 	passport.deserializeUser((id, done) => {
 		if (typeof User.userTpe === 'owner') {
 			User.findOne({ _id: id }, (err, user) => {

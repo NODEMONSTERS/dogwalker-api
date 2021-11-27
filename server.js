@@ -44,12 +44,8 @@ app.use('/dog', dogController);
 const ownerController = require('./controllers/ownerController');
 app.use('/owner', ownerController);
 
-
 const walkerController = require('./controllers/walkerController');
 app.use('/walker', walkerController);
-
-const ownerAuthenticationController = require('./controllers/ownerAuthenticationController')
-app.use('/ownerAccount', ownerAuthenticationController)
 
 app.set('port', process.env.PORT || 8080);
 
