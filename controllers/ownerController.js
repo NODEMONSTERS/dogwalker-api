@@ -32,11 +32,19 @@ router.delete('/:id', async (req, res) => {
 	res.status(204).json({ owners: owners });
 });
 
+//save dog into the dogs array
+router.put(':id/addDog', async (req, res) => {
+	const findOwner = await Owner.find({ _id: req.params.id });
+	findOwner.dogs.push(req.body);
+	findOwner.save();
+	res.status(201).json({ status: 201, owner: findOwner });
+});
+
 //user logs in
 router.post('/login', (req, res, next) => {
 	passport.authenticate('local-owner', (err, user, info) => {
 		if (err) throw err;
-		if (!user) res.status(400).json({msg: "Invalid credentials"})
+		if (!user) res.status(400).json({ msg: 'Invalid credentials' });
 		else {
 			req.logIn(user, (err) => {
 				if (err) throw err;
@@ -90,7 +98,6 @@ router.post('/register', async (req, res) => {
 	res.status(200).json('user created');
 });
 
-
 // user logs out
 router.get('/logout', (req, res, next) => {
 	//log user out
@@ -98,6 +105,5 @@ router.get('/logout', (req, res, next) => {
 	//redirect... can update where later
 	res.redirect('/');
 });
-
 
 module.exports = router;
