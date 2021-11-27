@@ -11,8 +11,6 @@ const session = require('express-session');
 
 const app = express();
 
-
-
 PORT = process.env.PORT;
 
 app.use(cors({
@@ -34,7 +32,7 @@ app.use(
 app.use(cookieParser('secretcode'));
 app.use(passport.initialize());
 app.use(passport.session());
-require('./db/ownerPassportConfiguration')(passport);
+require('./db/passportConfiguration')(passport);
 
 app.get('/', (req, res) => {
 	res.send('Home page');
@@ -46,12 +44,8 @@ app.use('/dog', dogController);
 const ownerController = require('./controllers/ownerController');
 app.use('/owner', ownerController);
 
-
 const walkerController = require('./controllers/walkerController');
 app.use('/walker', walkerController);
-
-const ownerAuthenticationController = require('./controllers/ownerAuthenticationController')
-app.use('/ownerAccount', ownerAuthenticationController)
 
 app.set('port', process.env.PORT || 8080);
 
