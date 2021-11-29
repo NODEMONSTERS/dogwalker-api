@@ -2,16 +2,19 @@
     {
         "name": "Beyonce",
         "city": "Houston, TX",
-        "email": "WhoRunTheWorld@gmail.com"
+        "email": "WhoRunTheWorld@gmail.com",
+        "password": "password123"
     },
     {
         "name": "Guy with hat",
         "city": "Sacramento, CA",
-        "email": "HatsAreCool@gmail.com"
+        "email": "HatsAreCool@gmail.com",
+        "password": "password123"
     },
     {
         "name": "Football",
         "city": "Green Bay, WI",
-        "email": "FootBallBros4Lyfe@gmail.com"
+        "email": "FootBallBros4Lyfe@gmail.com",
+        "password": "password123"
     }
 ]
