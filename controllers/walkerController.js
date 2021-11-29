@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 
 // GET ROUTE - get all dog walkers
 router.get('/', async (req, res) => {
-	const allWalkers = await Walkers.find();
+	const allWalkers = await Walker.find();
 	res.status(200).json({ status: 200, allWalkers: allWalkers });
 });
 
@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
 // DELETE ROUTE - delete dog walker by id
 router.delete('/:id', async (req, res) => {
 	await Walker.findByIdAndDelete(req.params.id);
-	const allWalkers = await Walkers.find();
+	const allWalkers = await Walker.find();
 	res.status(200).json({ status: 200, allWalkers: allWalkers });
 });
 

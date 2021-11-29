@@ -1,23 +1,31 @@
 const express = require('express');
 const router = express.Router();
 const Owner = require('../models/OwnerModel');
+const Dog = require('../models/DogModel');
 
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
 const bodyParser = require('body-parser');
 
+// CREATE OWNER
 router.post('/', async (req, res) => {
 	const createOwner = await Owner.create(req.body);
 	res.status(201).json({ status: 201, owners: createOwner });
 });
 
-//get
+//GET ALL OWNERS
 router.get('/', async (req, res) => {
 	const owners = await Owner.find({});
 	res.status(200).json({ status: 200, owners: owners });
 });
 
-//update
+//GET ONE OWNERS
+router.get('/:id', async (req, res) => {
+	const owner = await Owner.find({_id: req.params.id});
+	res.status(200).json({ status: 200, owner: owner });
+});
+
+//UPDATE OWNER
 router.put('/:id', async (req, res) => {
 	const updatedOwner = await Owner.findByIdAndUpdate(req.params.id, req.body, {
 		new: true,
@@ -25,19 +33,21 @@ router.put('/:id', async (req, res) => {
 	res.status(200).json({ status: 200, data: updatedOwner });
 });
 
-//delete
+//DELETE OWNER
 router.delete('/:id', async (req, res) => {
 	const deleteOwner = await Owner.findByIdAndDelete(req.params.id);
 	const owners = Owner.find();
 	res.status(204).json({ owners: owners });
 });
 
-//save dog into the dogs array
-router.put(':id/addDog', async (req, res) => {
-	const findOwner = await Owner.find({ _id: req.params.id });
-	findOwner.dogs.push(req.body);
-	findOwner.save();
-	res.status(201).json({ status: 201, owner: findOwner });
+// ADDING DOG TO OWNER'S ARRAY
+router.put("/:id/addDog", async (req, res) => {
+  const dog = await Dog.findById(req.body.id);
+  const owner = await Owner.findByIdAndUpdate(req.params.id, {
+    $push: { dogs: dog.id }},
+    {new: true},
+  );
+  res.json({ status: 200, data: owner });
 });
 
 //user logs in
@@ -95,7 +105,8 @@ router.post('/register', async (req, res) => {
 	const savedOwner = await newOwner.save();
 	if (!savedOwner) throw Error('User was not saved');
 
-	res.status(200).json('user created');
+	// res.status(200).json('user created');
+	res.status(200).json({newOwner: savedOwner});
 });
 
 // user logs out
