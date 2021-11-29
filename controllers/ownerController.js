@@ -19,9 +19,9 @@ router.get('/', async (req, res) => {
 	res.status(200).json({ status: 200, owners: owners });
 });
 
-//GET ONE OWNERS
+//GET ONE OWNER
 router.get('/:id', async (req, res) => {
-	const owner = await Owner.find({_id: req.params.id});
+	const owner = await Owner.findById({_id: req.params.id}).populate('dogs');
 	res.status(200).json({ status: 200, owner: owner });
 });
 
@@ -46,7 +46,7 @@ router.put("/:id/addDog", async (req, res) => {
   const owner = await Owner.findByIdAndUpdate(req.params.id, {
     $push: { dogs: dog.id }},
     {new: true},
-  );
+  ).populate('dogs');
   res.json({ status: 200, data: owner });
 });
 
