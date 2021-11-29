@@ -40,23 +40,7 @@ router.delete('/:id', async (req, res) => {
 	res.status(204).json({ owners: owners });
 });
 
-// save dog into the dogs array
-// router.put('/:id/addDog', async (req, res) => {
-// 	const findOwner = await Owner.find({ _id: req.params.id });
-// 	// findOwner.dogs.push({ _id: req.body._id });
-// 	findOwner.dogs.push(req.body);
-// 	findOwner.save();
-// 	res.status(201).json({ status: 201, owner: findOwner });
-// });
-
-// router.put('/:id/addDog', (req, res) => {
-// 	Dog.findById(req.body.id).then(dog => {
-//     console.log(dog)
-// 		Owner.findByIdAndUpdate(req.params.id, {$push: {dogs: dog._id}}, {new: true}),
-//     res.status(201).json({ status: 201, owner: Owner });
-// 	});
-// });
-
+// ADDING DOG TO OWNER'S ARRAY
 router.put("/:id/addDog", async (req, res) => {
   const dog = await Dog.findById(req.body.id);
   const owner = await Owner.findByIdAndUpdate(req.params.id, {
