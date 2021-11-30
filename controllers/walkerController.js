@@ -37,11 +37,11 @@ router.put('/:id', async (req, res) => {
 router.post('/login', (req, res, next) => {
 	passport.authenticate('local-walker', (err, user, info) => {
 		if (err) throw err;
-		if (!user) res.send('Invalid credentials');
+		if (!user) res.status(400).json({ msg: 'Invalid credentials' });
 		else {
 			req.logIn(user, (err) => {
 				if (err) throw err;
-				res.send('Success!');
+				res.json({ user });
 				console.log(req.user);
 			});
 		}
@@ -74,7 +74,7 @@ router.post('/register', async (req, res) => {
 	// hash the password as well, so now sending the password out into the open world.
 	//if something goes wrong, send and error
 	const hash = await bcrypt.hash(password, salt);
-	if (!hash) throw Error("Something didn't get hashed correctly");
+	if (!hash) 	return res.status(400).json({ msg: 'Something did not hash correctly' });
 
 	//create a new user
 	const newWalker = new Walker({
