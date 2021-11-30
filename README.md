@@ -9,21 +9,13 @@ After we decided on the overall project, we started working on the wireframe, ge
 
 And now we are waiting for project approval..
 
-### User Stories
-
-Our users are both dog walkers and those needing their dogs walked. Dog walkers are dog lovers who want to combine the joys of life with their working life--and what better combination is there than to walk dogs?! Dog owners are busy go-getters who understand that it takes a village to care for their much loved pets and they know that they can come to us to help fulfill their dog walking needs.
-
 
 ## Framework Used
 
 - React
 - Express
 
-## How to Use
-
-(This will be filled out right before the production of our app)
-
 ## Project Overview/Description
 
 Project Overview that includes; React architecture, wireframe, time/priority matrix and table can be found on..
-- [Project Overview](project-worksheet.md)
+- [Project Overview](planning/project-worksheet.md)
