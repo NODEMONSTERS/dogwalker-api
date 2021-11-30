@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Dog = require('../models/DogModel');
+const Owner = require('../models/OwnerModel');
 
 // ADD DOG ROUTE
 router.post('/', async (req, res) => {
@@ -16,17 +17,23 @@ res.status(200).json({ status: 200, data: dogs });
 
 // UPDATE DOG
 router.put('/:id', async (req, res) => {
-	const updatedDog = await Dog.findByIdAndUpdate(req.params.id, req.body, {
+	const updatedDog = await Dog.findByIdAndUpdate(req.params.id, req.body.dog, {
 		new: true,
 	});
-	res.status(200).json({ status: 200, data: updatedDog });
+	// res.status(200).json({ status: 200, data: updatedDog });
+
+	const owner = await Owner.findById({_id: req.body.ownerId}).populate('dogs');
+	res.status(200).json({ status: 200, owner: owner });
 });
 
 // DELETE DOG
 router.delete('/:id', async (req, res) => {
-	const deleteDog = await Dog.findByIdAndDelete(req.params.id);
-	const dogs = Dog.find();
-	res.status(204).json({ dogs: dogs });
+	const deleteDog = await Dog.findByIdAndDelete({_id: req.params.id});
+	// const dogs = await Dog.find({});
+	// res.status(204).json({ dogs: dogs });
+	
+	const owner = await Owner.findById({_id: req.body.id}).populate('dogs');
+	res.status(200).json({ status: 200, owner: owner });
 });
 
 module.exports = router;
