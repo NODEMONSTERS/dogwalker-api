@@ -11,6 +11,11 @@ router.get('/', async (req, res) => {
 	const allWalkers = await Walker.find();
 	res.status(200).json({ status: 200, allWalkers: allWalkers });
 });
+// GET 1 WALKER
+router.get('/:id', async (req, res) => {
+	const walker = await Walker.find({_id: req.params.id})
+	res.status(200).json({ status: 200, walker: walker})
+})
 
 // POST ROUTE - add new dog walker
 router.post('/', async (req, res) => {
@@ -32,6 +37,12 @@ router.put('/:id', async (req, res) => {
 	});
 	res.status(200).json({ status: 200, data: updatedWalker });
 });
+
+// ADD REQUEST - owner creates a request for dog walker
+router.post('/:id/addRequest', async (req, res) => {
+	const findWalker = await Walker.findByIdAndUpdate({_id : req.params.id}, {$push: {requests: req.body}}, {new:true})
+	res.status(201).json({status: 201, updatedWalker: findWalker})
+})
 
 //user logs in
 router.post('/login', (req, res, next) => {

@@ -1,4 +1,5 @@
 const mongoose = require('../db/connection');
+const requestSchema = require('./requestSchema')
 
 const walkerSchema = new mongoose.Schema({
 	name: String,
@@ -12,6 +13,7 @@ const walkerSchema = new mongoose.Schema({
 	},
 	picture: String,
 	city: String,
+	requests: [requestSchema]
 });
 
 module.exports = mongoose.model('Walker', walkerSchema);
