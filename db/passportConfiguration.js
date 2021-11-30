@@ -4,28 +4,8 @@ const bcrypt = require('bcryptjs');
 const localStrategy = require('passport-local').Strategy;
 
 module.exports = function (passport) {
-
-	passport.use('local-owner',
-		new localStrategy((email, password, done) => {
-
-				User.findOne({ email: email }, (err, user) => {
-					if (err) throw err;
-					if (!user) return done(null, false);
-					bcrypt.compare(password, user.password, (err, result) => {
-						if (err) return 'invalid password';
-						if (result === true) {
-							return done(null, user);
-						} else {
-							return done(null, false);
-						}
-					});
-				});			
-			}
-		)
-	);
-
 	passport.use(
-		'local-walker',
+		'local-owner',
 		new localStrategy((email, password, done) => {
 			User.findOne({ email: email }, (err, user) => {
 				if (err) throw err;
@@ -42,6 +22,24 @@ module.exports = function (passport) {
 		})
 	);
 
+	passport.use(
+		'local-walker',
+		new localStrategy((email, password, done) => {
+			Walker.findOne({ email: email }, (err, walker) => {
+				if (err) throw err;
+				if (!walker) return done(null, false);
+				bcrypt.compare(password, walker.password, (err, result) => {
+					if (err) return 'invalid password';
+					if (result === true) {
+						return done(null, walker);
+					} else {
+						return done(null, false);
+					}
+				});
+			});
+		})
+	);
+
 	passport.serializeUser((user, done) => {
 		if (typeof User.userTpe === 'owner') {
 			done(null, user.id);
@@ -49,7 +47,7 @@ module.exports = function (passport) {
 			done(null, user.id);
 		}
 	});
-	
+
 	passport.deserializeUser((id, done) => {
 		if (typeof User.userTpe === 'owner') {
 			User.findOne({ _id: id }, (err, user) => {
