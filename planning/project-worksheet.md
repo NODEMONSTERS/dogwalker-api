@@ -61,20 +61,21 @@ This app will allow dog owners and people with free time looking for a job toget
 | --- | :---: | :---: | :---: | :---: |
 | App | H | 1hr | 1hr | 1hr |
 | NavBar | H | 2hr | 3hr | 3hr |
-| Team Page | H | 1hr |  |  |
-| Sign-up | H | 1hr |  |  |
-| Dogs | H | 1hr |  |  |
-| DogWalkers | H | 2hr |  |  |
-| DogOwners | H | 2hr |  |  |
-| Request | H | 2hr |  |  |
-| Bootstrap Styling | H | 7hr |  |  |
-| CSS | M | 5hr |  |  |
+| Team Page | H | 1hr | 1hr | 1hr |
+| Sign-up | H | 1hr | 5hr | 5hr |
+| Log-in | H | 1hr | 3hr | 3hr |
+| Dogs | H | 1hr | 1hr | 1hr |
+| DogWalkers | H | 2hr | 3hr | 3hr |
+| DogOwners | H | 2hr | 3hr | 3hr |
+| Request | H | 2hr | 2hr | 2hr |
+| Bootstrap Styling | H | 7hr | 10hr | 10hr |
+| CSS | M | 5hr | 1hr |  |
 | UpdateRequest(PostMVP) | L | 2hr |  |  |
 | Complete | L | 2hr |  |  |
 | Filter | L | 2hr |  |  |
 | PostMVP CSS | L | 5hr |  |  |
-| Total (MVP) | H |  |  |
-| Total (PostMVP) | L |  |  |
+| Total (MVP) | H | 25hr | 32hr | 32hr |
+| Total (PostMVP) | L | 11hr | 0hr |
 
 
 
@@ -83,3 +84,19 @@ This app will allow dog owners and people with free time looking for a job toget
 - [React Bootstrap](https://react-bootstrap.netlify.app/)
 
 ## Code Snippet
+
+```
+router.post('/login', (req, res, next) => {
+	passport.authenticate('local-owner', (err, user, info) => {
+		if (err) throw err;
+		if (!user) res.status(400).json({ msg: 'Invalid credentials' });
+		else {
+			req.logIn(user, (err) => {
+				if (err) throw err;
+				res.json({user});
+				console.log(req.user);
+			});
+		}
+	})(req, res, next);
+});
+```
