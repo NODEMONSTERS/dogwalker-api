@@ -20,8 +20,6 @@ router.put('/:id', async (req, res) => {
 	const updatedDog = await Dog.findByIdAndUpdate(req.params.id, req.body.dog, {
 		new: true,
 	});
-	// res.status(200).json({ status: 200, data: updatedDog });
-
 	const owner = await Owner.findById({_id: req.body.ownerId}).populate('dogs');
 	res.status(200).json({ status: 200, owner: owner });
 });
@@ -29,9 +27,6 @@ router.put('/:id', async (req, res) => {
 // DELETE DOG
 router.delete('/:id', async (req, res) => {
 	const deleteDog = await Dog.findByIdAndDelete({_id: req.params.id});
-	// const dogs = await Dog.find({});
-	// res.status(204).json({ dogs: dogs });
-	
 	const owner = await Owner.findById({_id: req.body.id}).populate('dogs');
 	res.status(200).json({ status: 200, owner: owner });
 });
