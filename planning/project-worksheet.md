@@ -9,11 +9,11 @@ This app will allow dog owners and people with free time looking for a job toget
 
 ## React Architecture
 
-- [React Architecture]()
+- [React Architecture](./dog-walker-architecture.drawio.png)
 
 ## Wireframes
 
-- [Wireframe]('./dog_walker_wireframe.jpg)
+- [Wireframe](./dog_walker_wireframe.jpg)
 
 ## MVP/Post MVP
 #### MVP
